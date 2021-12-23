@@ -1,17 +1,22 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <top />
+    <router-view></router-view>
+    <bot v-show="this.$route.meta.msg != false"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import top from './components/top'
+import bot from './components/Footer'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    // HelloWorld,
+    top,
+    bot
   }
 }
 </script>
@@ -21,8 +26,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  /* text-align: center; */
+  /* color: #2c3e50; */
 }
 </style>
