@@ -1,6 +1,6 @@
 <template>
     <div>
-        我是搜索页面{{keyword}}
+        <TypeNav/>
     </div>
 </template>
 

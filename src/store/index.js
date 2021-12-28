@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import home from './home'
+import search from './search'
 
 Vue.use(Vuex)
 
@@ -9,23 +11,13 @@ export default new Vuex.Store({
         table: [],
         background: '',
         textcolor: '',
-        user: JSON.parse(sessionStorage.getItem('user') || '[]'),
+        user: '',
     },
     // 存储用户管理页面数据
     mutations: {
         addrecord(state, preload) {
             state.tableData = preload
             sessionStorage.setItem('rightsList', JSON.stringify(preload))
-        },
-        // 存储商品管理数据
-        record(state, preload) {
-            state.table = preload
-            console.log(state.table);
-            sessionStorage.setItem('liftList', JSON.stringify(preload))
-        },
-        setUser(state, preload) {
-            state.user = preload;
-            sessionStorage.setItem('user', JSON.stringify(state.user));
         },
     },
     actions: {},
@@ -35,5 +27,5 @@ export default new Vuex.Store({
     //         return
     //     }
     // },
-    modules: {}
+    modules: { home, search }
 })

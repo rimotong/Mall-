@@ -62,12 +62,11 @@ export default {
     methods: {
         search(){
             //this.$router.push(`/search/${this.keyword}`)
-            this.$router.push({
-                name:'search',
-                params:{
-                    keyword:this.keyword
-                }
-            })
+            if(this.$route.query){ //如果有query参数，可以一起传递
+                let location = {name:'search',params:{keyword:this.keyword || undefined}}
+                location.query = this.$route.query
+                this.$router.push(location)
+            }
         }
     },
     components: {

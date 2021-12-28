@@ -17,6 +17,10 @@ export default {
     // HelloWorld,
     top,
     bot
+  },
+  mounted(){
+    //派发信息，获取列表信息
+    this.$store.dispatch('getCategoryList')
   }
 }
 </script>

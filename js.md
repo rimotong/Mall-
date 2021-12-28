@@ -137,3 +137,18 @@ function swap(arr, i, j) {
     arr[i] = arr[j];
     arr[j] = temp;
 }
+
+## 递归
+function sum(num){
+    if(num<=1){    
+        return 1;  
+    }else{    
+        return num+sum(num-1);  
+    }
+}
+
+function Fibonacci (n) {
+  if ( n <= 2 ) {return 1};
+
+  return Fibonacci(n - 1) + Fibonacci(n - 2);
+}

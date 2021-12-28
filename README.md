@@ -42,4 +42,7 @@ VueRouter.prototype.push = function push(location) {
     //call||apply 都可以篡改函数的上下文一次  不同点：call传递参数用逗号隔开，apply方法执行，传递数组
     return originalPush.call(this, location).catch(err => err)
 }
+### 数据优化
+接口只执行一次时可以放至App.vue组件中获取
 
+### 合并参数
