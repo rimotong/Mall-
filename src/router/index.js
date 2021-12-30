@@ -37,7 +37,7 @@ const routes = [{
         meta: { title: "注册", msg: false }
     },
     {
-        path: "/search/:keyword",
+        path: "/search/:keyword?",
         component: search,
         name: "search",
         meta: { title: "搜索" },
@@ -85,7 +85,7 @@ router.beforeEach((to, from, next) => {
 });
 //后置路由守卫
 router.afterEach((to, from) => {
-    document.title = to.meta.title || "后台管理系统"
+    document.title = to.meta.title || "富集云"
 })
 
 export default router;

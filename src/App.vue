@@ -3,6 +3,7 @@
     <top />
     <router-view></router-view>
     <bot v-show="this.$route.meta.msg != false"/>
+    <el-backtop></el-backtop>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ export default {
   mounted(){
     //派发信息，获取列表信息
     this.$store.dispatch('getCategoryList')
+    this.$store.dispatch("getBannerlist")
   }
 }
 </script>
@@ -30,6 +32,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(241, 241, 241);
   /* text-align: center; */
   /* color: #2c3e50; */
 }

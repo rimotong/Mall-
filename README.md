@@ -45,4 +45,8 @@ VueRouter.prototype.push = function push(location) {
 ### 数据优化
 接口只执行一次时可以放至App.vue组件中获取
 
-### 合并参数
+### nextTick
+this.$nextTick(() => {})
+nextTick官网解释:
+在下次DOM更新, 循环结束之后,执行延迟回调。在 修改数据之后 立即使用这个方法，获取更新后的DOM。
+注意：组件实例的$nextTick方法，在工作当中经常使用，经常结合第三方插件使用，获取更新后的DOM节点

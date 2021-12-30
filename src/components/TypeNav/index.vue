@@ -32,14 +32,14 @@
       </div>
 
       <nav class="nav">
-        <router-link to="###">服装城</router-link>
-        <router-link to="###">美妆馆</router-link>
-        <router-link to="###">尚品汇超市</router-link>
-        <router-link to="###">全球购</router-link>
-        <router-link to="###">闪购</router-link>
-        <router-link to="###">团购</router-link>
-        <router-link to="###">有趣</router-link>
-        <router-link to="###">秒杀</router-link>
+        <router-link to="">服装城</router-link>
+        <router-link to="">美妆馆</router-link>
+        <router-link to="">应用商城</router-link>
+        <router-link to="">全球购</router-link>
+        <router-link to="">闪购</router-link>
+        <router-link to="">团购</router-link>
+        <router-link to="">有趣</router-link>
+        <router-link to="">秒杀</router-link>
       </nav>
     </div>
   </div>
@@ -80,7 +80,7 @@ export default {
         let location = {name:"search"};
         let query = {categoryName:categoryname};
         if(categoryid){
-          query.categoryId = categoryid;
+          query.category1Id = categoryid;
         }else if(category2id){
           query.category2Id = category2id;
         }else{
@@ -90,8 +90,8 @@ export default {
         if(this.$route.params){
           location.params = this.$route.params
           location.query = query;
-          this.$router.push(location)
         }
+        this.$router.push(location)
       }
     },
     eventshow(){

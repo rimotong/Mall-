@@ -62,12 +62,17 @@ export default {
     methods: {
         search(){
             //this.$router.push(`/search/${this.keyword}`)
+            let location = {name:'search',params:{keyword:this.keyword || undefined}}
             if(this.$route.query){ //如果有query参数，可以一起传递
-                let location = {name:'search',params:{keyword:this.keyword || undefined}}
                 location.query = this.$route.query
-                this.$router.push(location)
             }
+            this.$router.push(location)
         }
+    },
+    mounted(){
+        this.$bus.$on("clear",()=>{
+            this.keyword = '';
+        })
     },
     components: {
 
@@ -106,9 +111,7 @@ export default {
                         border-left: 1px solid #b3aeae;
                     }
                 }
-
             }
-
         }
     }
 
