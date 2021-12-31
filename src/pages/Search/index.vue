@@ -29,30 +29,20 @@
 
         <!--details-->
         <div class="details clearfix">
+          <!-- 排序 -->
           <div class="sui-navbar">
             <div class="navbar-inner filter">
               <ul class="sui-nav">
-                <li class="active">
-                  <a href="#">综合</a>
+                <li :class="{active:isOne}" @click="mvorder('1')">
+                  <a href="#">综合<span v-show="isOne" class="iconfont" :class="{'icon-ic-down':isDesc,'icon-ic-up':isAsc}"></span></a>
                 </li>
-                <li>
-                  <a href="#">销量</a>
-                </li>
-                <li>
-                  <a href="#">新品</a>
-                </li>
-                <li>
-                  <a href="#">评价</a>
-                </li>
-                <li>
-                  <a href="#">价格⬆</a>
-                </li>
-                <li>
-                  <a href="#">价格⬇</a>
+                <li :class="{active:isTow}"  @click="mvorder('2')">
+                  <a href="#">价格<span v-show="isTow" class="iconfont" :class="{'icon-ic-down':isDesc,'icon-ic-up':isAsc}"></span></a>
                 </li>
               </ul>
             </div>
           </div>
+          <!-- 显示内容 -->
           <div class="goods-list">
             <ul class="yui3-g" >
               <li class="yui3-u-1-5" v-for="(good,index) in goodsList" :key="good.id">
@@ -80,6 +70,7 @@
               </li>
             </ul>
           </div>
+          <!-- 分页栏 -->
           <div class="fr page">
             <div class="sui-pagination clearfix">
               <ul>
@@ -131,7 +122,7 @@ export default {
         //搜素关键字
         keyword: "",
         //排序
-        order: "",
+        order: "1:desc",
         //分页器
         pageNo: 1,
         //每一页展示参数
@@ -158,8 +149,10 @@ export default {
     //自定义事件回调(子传父)
     attrinfo(arr,name){
       let props = `${arr.attrId}:${name}:${arr.attrName}`;
-      this.searchparams.props.push(props)
-      this.getdata()
+      if(this.searchparams.props.includes(props) == false){
+        this.searchparams.props.push(props)
+        this.getdata()
+      }
     },
     //自定义事件回调(子传父)
     trademarkinfo(val){
@@ -207,10 +200,43 @@ export default {
     removeAttr(index){
       this.searchparams.props.splice(index, 1);
       this.getdata()
+    },
+    //商品排序选择
+    mvorder(flag){
+      let StartOrder = this.searchparams.order;
+      //获取排序初始状态
+      let StartFlag = StartOrder.split(":")[0];
+      let StartSort = StartOrder.split(":")[1];
+      //
+      let newOrder = "";
+      if(flag == StartFlag){
+        newOrder = `${StartFlag}:${StartSort == "desc" ? "asc" : "desc"}`;
+        console.log(newOrder)
+      }else{
+        newOrder = `${flag}:${"desc"}`;
+        console.log(newOrder)
+      }
+      //需要给order重新赋值
+      this.searchparams.order = newOrder;
+      //再次发请求
+      this.getdata();
+      // this.getdata()
     }
   },
   computed:{
     ...mapGetters(['goodsList','trademarkList','attrsList']),
+    isOne(){
+      return this.searchparams.order.indexOf('1')!= -1;
+    },
+    isTow(){
+      return this.searchparams.order.indexOf('2')!= -1;
+    },
+    isAsc() {
+      return this.searchparams.order.indexOf("asc") != -1;
+    },
+    isDesc() {
+      return this.searchparams.order.indexOf("desc") != -1;
+    },
   },
   watch:{
     $route(newval,oldval){
